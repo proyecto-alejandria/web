@@ -1,5 +1,35 @@
-<h2>Próximamente...</h2>
+<mat-sidenav-container>
+  <mat-sidenav id="main-sidenav" #sidenav mode="side" opened>
+    <mat-nav-list>
+      <span mat-subheader>Navegación</span>
 
-<p><a href="https://proyectoalejandria.org" title="Sitio web del Proyecto Alejandría">Ir al sitio web del proyecto</a></p>
+      <a mat-list-item routerLink="/">
+        <mat-icon mat-list-icon>home</mat-icon>
+        <span mat-line>Inicio</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
 
-<router-outlet></router-outlet>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button mat-icon-button
+              (click)="sidenav.toggle()"
+              aria-controls="#main-sidenav"
+              aria-label="Abrir/cerrar navegación">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <span>Proyecto Alejandría</span>
+
+      <div class="spacer"></div>
+
+      <mat-icon>light_mode</mat-icon>
+      <mat-slide-toggle [checked]="darkMode"
+                        (toggleChange)="toggleDarkMode()"
+                        aria-label="Activar/desactivar modo oscuro"></mat-slide-toggle>
+      <mat-icon>dark_mode</mat-icon>
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
