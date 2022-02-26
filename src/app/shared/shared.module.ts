@@ -1,3 +1,4 @@
+import { LayoutModule } from '@angular/cdk/layout';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,6 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     BrowserAnimationsModule,
 
+    LayoutModule,
+
     MatButtonModule,
     MatIconModule,
     MatListModule,
@@ -23,6 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatToolbarModule,
   ],
   exports: [
+    LayoutModule,
+
     MatButtonModule,
     MatIconModule,
     MatListModule,

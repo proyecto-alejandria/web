@@ -1,8 +1,21 @@
-:host,
-.mat-sidenav-container {
-  height: 100%;
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
-.mat-slide-toggle {
-  margin: 0 .25rem;
+.mat-toolbar {
+  z-index: 2;
+
+  .mat-slide-toggle {
+    margin: 0 .25rem;
+  }
+}
+
+.mat-sidenav-container {
+  flex: 1;
+}
+
+.sidenav {
+  width: 15rem;
 }
