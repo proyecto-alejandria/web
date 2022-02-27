@@ -2,4 +2,12 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports": true
   },
+
+  "html.format.indentInnerHtml": true,
+  "html.format.maxPreserveNewLines": 1,
+  "html.format.wrapAttributes": "force-aligned",
+
+  "[html]": {
+    "editor.formatOnSave": true
+  }
 }
