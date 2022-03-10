@@ -15,6 +15,11 @@ const routes: Routes = [
     component: LoginComponent,
     canActivate: [LoggedOutGuard],
   },
+
+  {
+    path: 'cuenta',
+    loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
+  },
 ];
 
 @NgModule({

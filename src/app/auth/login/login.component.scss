@@ -1,0 +1,16 @@
+.center {
+  text-align: center;
+
+  & + div {
+    margin-top: 3rem;
+  }
+}
+
+h1 {
+  padding-bottom: .25rem;
+}
+
+.mat-divider-vertical {
+  height: 20rem;
+  align-self: center;
+}

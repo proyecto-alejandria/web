@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="center">
+    <h1 class="border-bottom-primary">Acceder al Proyecto Alejandría</h1>
+
+    <p *ngIf="registerDisabled"
+       class="text-warn">El registro está desactivado temporalmente</p>
+  </div>
+
+  <div fxLayoutAlign="space-around start">
+    <form [formGroup]="loginForm"
+          (ngSubmit)="login()">
+      <h2>Cuenta existente</h2>
+
+      <p>
+        <app-form-field name="username"
+                        type="email"
+                        fieldId="login-email"
+                        label="Correo Electrónico"></app-form-field>
+      </p>
+
+      <p>
+        <app-form-field name="password"
+                        type="password"
+                        fieldId="login-password"
+                        label="Contraseña"
+                        autocomplete="current-password"></app-form-field>
+      </p>
+
+      <button mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="loginForm.invalid || loginForm.disabled">Iniciar Sesión</button>
+    </form>
+
+    <mat-divider [vertical]="true"></mat-divider>
+
+    <form [formGroup]="registerForm"
+          (ngSubmit)="register()">
+      <h2>Cuenta nueva</h2>
+
+      <p>
+        <app-form-field name="first_name"
+                        fieldId="register-first-name"
+                        label="Nombre"
+                        autocomplete="given-name"></app-form-field>
+      </p>
+
+      <p>
+        <app-form-field name="last_name"
+                        fieldId="register-last-name"
+                        label="Apellidos"
+                        autocomplete="family-name"></app-form-field>
+      </p>
+
+      <p>
+        <app-form-field name="email"
+                        type="email"
+                        fieldId="register-email"
+                        label="Correo Electrónico"></app-form-field>
+      </p>
+
+      <p>
+        <app-form-field name="password"
+                        type="password"
+                        fieldId="register-password"
+                        label="Contraseña"
+                        autocomplete="new-password"></app-form-field>
+      </p>
+
+      <p>
+        <app-form-field name="repeatPassword"
+                        type="password"
+                        fieldId="register-repeat-password"
+                        label="Repetir contraseña"
+                        autocomplete="new-password"></app-form-field>
+      </p>
+
+      <button mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="registerForm.invalid || registerForm.disabled">Crear cuenta</button>
+    </form>
+  </div>
+</div>
+
+<ng-template #registeredDialog
+             let-data>
+  <h1 mat-dialog-title>Cuenta creada</h1>
+
+  <div mat-dialog-content>
+    <p>Tu cuenta se ha creado con éxito {{ data.user.first_name }} {{ data.user.last_name }}.</p>
+    <p>Se ha enviado un enlace de activación a tu cuenta de correo electrónico: {{ data.user.email }}, debes hacer click
+      en ese enlace para poder acceder a tu cuenta.</p>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button
+            mat-dialog-close>Entendido</button>
+  </div>
+</ng-template>

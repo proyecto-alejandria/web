@@ -4,8 +4,6 @@ export interface UserCard {
 
   id: string;
 
-  username: string;
-
   first_name: string;
 
   last_name: string;
@@ -26,8 +24,6 @@ export class User implements UserCard {
 
   email: string;
 
-  username: string;
-
   first_name: string;
 
   last_name: string;
@@ -37,7 +33,6 @@ export class User implements UserCard {
   constructor(dto: UserDto) {
     this.id = dto.id;
     this.email = dto.email;
-    this.username = dto.username;
     this.first_name = dto.first_name;
     this.last_name = dto.last_name;
 
