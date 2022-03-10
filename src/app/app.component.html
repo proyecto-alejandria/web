@@ -15,6 +15,36 @@
                     (toggleChange)="toggleDarkMode()"
                     aria-label="Activar/desactivar modo oscuro"></mat-slide-toggle>
   <mat-icon>dark_mode</mat-icon>
+
+  <ng-container *ngIf="user; else loginButton">
+    <button mat-button
+            [matMenuTriggerFor]="authMenu">
+      <span>Hola, {{ user.first_name }}</span>
+      <mat-icon>expand_more</mat-icon>
+    </button>
+
+    <mat-menu #authMenu="matMenu"
+              xPosition="before">
+      <a mat-menu-item
+         routerLink="/cuenta">
+        <mat-icon>account_circle</mat-icon>
+        <span>Mi Cuenta</span>
+      </a>
+
+      <button mat-menu-item
+              (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Cerrar sesión</span>
+      </button>
+    </mat-menu>
+  </ng-container>
+
+  <ng-template #loginButton>
+    <a mat-raised-button
+       color="primary"
+       routerLink="/acceder"
+       title="Acceder a la aplicación">Acceder</a>
+  </ng-template>
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -28,7 +58,10 @@
       <mat-nav-list>
         <span mat-subheader>Navegación</span>
 
-        <a mat-list-item routerLink="/">
+        <a mat-list-item
+           routerLink="/"
+           routerLinkActive="list-item-active"
+           [routerLinkActiveOptions]="{ exact: true }">
           <mat-icon mat-list-icon>home</mat-icon>
           <span mat-line>Inicio</span>
         </a>

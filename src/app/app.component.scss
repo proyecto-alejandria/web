@@ -9,6 +9,10 @@
 
   .mat-slide-toggle {
     margin: 0 .25rem;
+
+    & + .mat-icon {
+      margin-right: 1rem;
+    }
   }
 }
 

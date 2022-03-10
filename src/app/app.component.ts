@@ -1,6 +1,9 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { AuthService } from 'auth/auth.service';
+import { User } from 'auth/user.model';
 import { Subscription } from 'rxjs';
+import { UIService } from 'shared/ui.service';
 
 @Component({
   selector: 'app-root',
@@ -15,23 +18,35 @@ export class AppComponent implements OnDestroy, OnInit {
 
   sidenavStartsOpened: boolean = true;
 
-  private sub?: Subscription;
+  user: User | null = null;
+
+  private subs: Subscription[] = [];
 
   constructor(
+    private auth: AuthService,
     private breakpointObserver: BreakpointObserver,
     private renderer: Renderer2,
+    private ui: UIService,
   ) { }
 
   ngOnInit(): void {
     this.sidenavStartsOpened = !this.breakpointObserver.isMatched(Breakpoints.XSmall);
 
-    this.sub = this.breakpointObserver
-      .observe(Breakpoints.XSmall)
-      .subscribe(result => this.isMobile = result.matches);
+    this.subs.push(
+      this.breakpointObserver
+        .observe(Breakpoints.XSmall)
+        .subscribe(result => this.isMobile = result.matches)
+    );
+
+    this.subs.push(
+      this.auth.currentUser.subscribe(user => this.user = user)
+    );
   }
 
   ngOnDestroy(): void {
-    this.sub?.unsubscribe();
+    for (const sub of this.subs) {
+      sub.unsubscribe();
+    }
   }
 
   toggleDarkMode(): void {
@@ -42,6 +57,11 @@ export class AppComponent implements OnDestroy, OnInit {
     } else {
       this.renderer.addClass(document.body, 'light-theme');
     }
+  }
+
+  logout(): void {
+    this.auth.logout();
+    this.ui.message('Has cerrado sesión correctamente');
   }
 
 }

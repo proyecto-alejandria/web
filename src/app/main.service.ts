@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
-import { lastValueFrom, tap } from 'rxjs';
+import { AuthService } from 'auth/auth.service';
+import { lastValueFrom, switchMap, tap } from 'rxjs';
 import { FATAL_LOAD_ERROR } from 'shared/errors';
 import { environment } from '../environments/environment';
 
@@ -33,8 +34,9 @@ export class MainService {
   private renderer: Renderer2;
 
   constructor(
+    private auth: AuthService,
     private http: HttpClient,
-    private rendererFactory: RendererFactory2,
+    rendererFactory: RendererFactory2,
   ) {
     this.renderer = rendererFactory.createRenderer(document.body, null);
   }
@@ -44,6 +46,7 @@ export class MainService {
       .get<AppSettings>(environment.apiUrl + '/bootstrap/')
       .pipe(
         tap(settings => this._settings = settings),
+        switchMap(() => this.auth.load()),
       );
 
     return lastValueFrom(obs)

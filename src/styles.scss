@@ -81,6 +81,20 @@ $light-theme: mat.define-light-theme((
     border-color: $primary-color transparent $primary-color transparent;
   }
 
+  .list-item-active {
+    background: mat.get-color-from-palette($primary-palette, 'default', .15);
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: mat.get-color-from-palette($primary-palette, 'default', .3) !important;
+    }
+  }
+
+  .border-bottom-primary {
+    border-bottom: 2px solid mat.get-color-from-palette($primary-palette);
+  }
+
   // Utilities
   .text-warn {
     color: mat.get-color-from-palette($warn-palette);
@@ -150,4 +164,14 @@ body {
   .spacer {
     flex: 1 1 auto;
   }
+}
+
+.mat-button {
+  .mat-icon + span {
+    margin-left: .5rem;
+  }
+}
+
+.container {
+  padding: 3rem 5rem;
 }

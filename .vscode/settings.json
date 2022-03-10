@@ -8,6 +8,7 @@
   "html.format.wrapAttributes": "force-aligned",
 
   "[html]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.linkedEditing": true
   }
 }
