@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>{{ config.question }}</h2>
+
+<mat-dialog-actions>
+  <button mat-button
+          [disabled]="disabled"
+          color="primary"
+          [mat-dialog-close]="true">Sí</button>
+  <button mat-button
+          [disabled]="disabled"
+          [mat-dialog-close]="false">No</button>
+</mat-dialog-actions>

@@ -60,8 +60,12 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   logout(): void {
-    this.auth.logout();
-    this.ui.message('Has cerrado sesión correctamente');
+    this.ui
+      .confirm('¿Desea cerrar sesión?')
+      .subscribe(() => {
+        this.auth.logout();
+        this.ui.message('Has cerrado sesión correctamente');
+      });
   }
 
 }

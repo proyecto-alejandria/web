@@ -1,6 +1,6 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ApiInterceptor } from 'api/api.interceptor';
 import { AuthInterceptor } from 'auth/auth.interceptor';
 import { MainService } from 'main.service';
@@ -18,7 +18,7 @@ import { HomeComponent } from './home/home.component';
     LoginComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserAnimationsModule,
 
     SharedModule,
 

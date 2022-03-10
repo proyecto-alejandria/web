@@ -1,0 +1,15 @@
+<h3 mat-dialog-title>{{ config.title }}</h3>
+
+<mat-dialog-content>
+  <p *ngIf="config.description">{{ config.description }}</p>
+
+  <ul>
+    <li *ngFor="let item of config.errors">{{ item }}</li>
+  </ul>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button
+          color="primary"
+          [mat-dialog-close]="true">Cerrar</button>
+</mat-dialog-actions>
