@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ApiService } from 'api/api.service';
 import { BehaviorSubject, catchError, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
-import { User, UserDto } from './user.model';
+import { User, UserCard, UserDto } from './user.model';
 
 
 const JWT_STORAGE_KEY = 'stok';
@@ -13,7 +13,20 @@ const JWT_EXP_OFFSET = 10;
 const LOGIN_PATH = '/auth/jwt/create/';
 const REFRESH_TOKEN_PATH = '/auth/jwt/refresh/';
 
+const REGISTER_PATH = '/users/';
 const USERDATA_PATH = '/users/me/';
+const ACTIVATION_PATH = '/users/activation/';
+export interface RegisterData {
+
+  first_name: string;
+
+  last_name: string;
+
+  email: string;
+
+  password: string;
+
+};
 
 interface LoginResult {
 
@@ -170,6 +183,14 @@ export class AuthService {
 
   hasPerm(perm: string): boolean {
     return this.userSubject.value?.hasPerm(perm) || false;
+  }
+
+  register(data: RegisterData): Observable<UserCard> {
+    return this.api.post<UserCard>(REGISTER_PATH, data);
+  }
+
+  activate(uid: string, token: string): Observable<UserDto> {
+    return this.api.post(ACTIVATION_PATH, { uid, token });
   }
 
 }

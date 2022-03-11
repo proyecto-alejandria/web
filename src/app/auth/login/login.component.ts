@@ -3,7 +3,6 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AccountService } from 'account/account.service';
 import { AuthService } from 'auth/auth.service';
 import { USERNAME_REGEX } from 'auth/user.model';
 import { MainService } from 'main.service';
@@ -37,7 +36,6 @@ export class LoginComponent implements OnInit {
   private registeredDialog!: TemplateRef<any>;
 
   constructor(
-    private account: AccountService,
     private auth: AuthService,
     private dialog: MatDialog,
     private fb: FormBuilder,
@@ -74,7 +72,7 @@ export class LoginComponent implements OnInit {
 
   register(): void {
     this.ui
-      .work(this.account.register(this.registerForm.value), {
+      .work(this.auth.register(this.registerForm.value), {
         form: this.registerForm,
         extraForms: [this.loginForm],
       })

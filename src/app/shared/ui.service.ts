@@ -13,8 +13,6 @@ export interface WorkOptions {
 
   extraForms?: FormGroup[];
 
-  resetForm?: boolean;
-
 };
 
 @Injectable({
@@ -56,8 +54,6 @@ export class UIService {
 
   public work<T>(observable: Observable<T>, options: WorkOptions = {}): Observable<T> {
     const opts: WorkOptions = {
-      resetForm: false,
-
       ...options,
     };
 

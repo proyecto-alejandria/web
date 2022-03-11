@@ -6,15 +6,9 @@
     <mat-icon>menu</mat-icon>
   </button>
 
-  <span>Proyecto Alejandría</span>
+  <span [fxHide]="isMobile">Proyecto Alejandría</span>
 
   <div class="spacer"></div>
-
-  <mat-icon>light_mode</mat-icon>
-  <mat-slide-toggle [checked]="darkMode"
-                    (toggleChange)="toggleDarkMode()"
-                    aria-label="Activar/desactivar modo oscuro"></mat-slide-toggle>
-  <mat-icon>dark_mode</mat-icon>
 
   <ng-container *ngIf="user; else loginButton">
     <button mat-button
@@ -54,7 +48,9 @@
                [fixedInViewport]="isMobile"
                fixedTopGap="56"
                [opened]="!isMobile">
-    <div class="sidenav">
+    <div class="sidenav"
+         fxLayout="column"
+         fxLayoutAlign="space-between">
       <mat-nav-list>
         <span mat-subheader>Navegación</span>
 
@@ -66,6 +62,15 @@
           <span mat-line>Inicio</span>
         </a>
       </mat-nav-list>
+
+      <div fxLayoutAlign="end center"
+           style="padding: 1rem">
+        <mat-icon>light_mode</mat-icon>
+        <mat-slide-toggle [checked]="darkMode"
+                          (toggleChange)="toggleDarkMode()"
+                          aria-label="Activar/desactivar modo oscuro"></mat-slide-toggle>
+        <mat-icon>dark_mode</mat-icon>
+      </div>
     </div>
   </mat-sidenav>
 

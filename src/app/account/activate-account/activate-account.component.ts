@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AccountService } from 'account/account.service';
+import { AuthService } from 'auth/auth.service';
 
 enum ActivationStatus {
   LOADING,
@@ -19,14 +19,14 @@ export class ActivateAccountComponent implements OnInit {
   status: ActivationStatus = ActivationStatus.LOADING;
 
   constructor(
-    private accountService: AccountService,
+    private auth: AuthService,
     private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
     const params = this.route.snapshot.params;
 
-    this.accountService
+    this.auth
       .activate(params['uid'], params['token'])
       .subscribe({
         next: () => this.status = ActivationStatus.SUCCESS,
